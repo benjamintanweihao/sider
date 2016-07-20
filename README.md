@@ -23,7 +23,7 @@ While this is a mostly educational endeavour, I hope to have a complete implemen
 client |> Sider.stop
 ```
 
-## Set & Get__
+## Set & Get
 
 ```elixir
 # set
@@ -32,7 +32,7 @@ client |> Sider.query ["SET", "FOO", "BAR"]
 # get
 client |> Sider.query ["GET", "FOO"]
 # => "BAR"
-
+```
 
 ## References
 

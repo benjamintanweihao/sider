@@ -1,5 +1,7 @@
 defmodule Sider do
   use GenServer
+  use Sider.API
+
   alias Sider.Encoder
   alias Sider.Decoder
 

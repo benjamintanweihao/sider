@@ -1,7 +1,5 @@
 # :metal: Sider – A Redis client in Elixir :metal:
 
-## NOTHING TO SEE HERE YET!
-
 ```elixir
 iex> "redis" |> String.reverse
 sider
@@ -32,6 +30,23 @@ client |> Sider.query ["SET", "FOO", "BAR"]
 # get
 client |> Sider.query ["GET", "FOO"]
 # => "BAR"
+```
+
+## Usage Example
+
+__TODO__: Not implemented yet!
+
+```elixir
+client |> Sider.sadd("set1", "bar")
+# => "1"
+
+client |> Sider.sadd("set2", ["bar", "foo"])
+# => "2"
+
+client |> Sider.sdiff(["set2", "set1"])
+# => ["foo"]
+
+client |> Sider.sdiffstore("dest", ["set2", "set1"])
 ```
 
 ## References

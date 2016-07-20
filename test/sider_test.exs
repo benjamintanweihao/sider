@@ -15,17 +15,6 @@ defmodule SiderTest do
     assert "-ERR unknown command 'LOLWUT'\r\n" == msg
   end
 
-  test "add to set" do
-    opts = [:binary, active: false]
-    {:ok, socket} = :gen_tcp.connect('localhost', 6379, opts)
-
-    payload = "*3\r\n$3\r\nSET\r\n$3\r\nFOO\r\n$3\r\nBAR\r\n"
-    :ok = :gen_tcp.send(socket, payload)
-    {:ok, msg} = :gen_tcp.recv(socket, 0)
-
-    assert "-ERR unknown command 'LOLWUT'\r\n" == msg
-  end
-
   test "start_link" do
     {:ok, pid} = Sider.start_link
 

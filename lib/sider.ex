@@ -1,6 +1,7 @@
 defmodule Sider do
   use GenServer
   alias Sider.Encoder
+  alias Sider.Decoder
 
   defmodule State do
     defstruct socket: nil
@@ -33,11 +34,11 @@ defmodule Sider do
   end
 
   def handle_call({:query, payload}, _from, %State{socket: socket} = state) do
-    :ok = :gen_tcp.send(socket, payload)
-    {:ok, msg} = :gen_tcp.recv(socket, 0)
+    :ok               = :gen_tcp.send(socket, payload)
+    {:ok, msg}        = :gen_tcp.recv(socket, 0)
+    {:ok, decoded, _} = Decoder.decode(msg)
 
-    # TODO: Decoder goes here!
-    {:reply, msg, state}
+    {:reply, decoded, state}
   end
 
 end

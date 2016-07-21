@@ -34,8 +34,6 @@ client |> Sider.query ["GET", "FOO"]
 
 ## Usage Example
 
-__TODO__: Not implemented yet!
-
 ```elixir
 client |> Sider.sadd("set1", "bar")
 # => "1"

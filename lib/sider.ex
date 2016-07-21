@@ -34,12 +34,14 @@ defmodule Sider do
     {:ok, %State{socket: socket}}
   end
 
-  def handle_call({:query, payload}, _from, %State{socket: socket} = state) do
+  def handle_call({:query, payload}, from, %State{socket: socket} = state) do
     :ok               = :gen_tcp.send(socket, payload)
     {:ok, msg}        = :gen_tcp.recv(socket, 0)
     {:ok, decoded, _} = Decoder.decode(msg)
 
-    {:reply, decoded, state}
+    GenServer.reply(from, decoded)
+
+    {:noreply, state}
   end
 
 end

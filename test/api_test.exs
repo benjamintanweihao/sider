@@ -1,7 +1,6 @@
 defmodule APITest do
-  use ExUnit.Case
+  use ExUnit.Case, async: true
   alias Sider.API
-
 
   setup do
     {:ok, client} = Sider.start_link

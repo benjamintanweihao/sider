@@ -1,5 +1,5 @@
 defmodule SiderTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: true
 
   setup_all do
     {:ok, pid} = Sider.start_link

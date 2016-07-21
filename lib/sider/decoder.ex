@@ -45,7 +45,7 @@ defmodule Sider.Decoder do
       {-1, <<"\r\n", rest :: binary>>} ->
         {:ok, nil, rest}
 
-      {n, rest} when n>= 0 ->
+      {n, rest} when n >= 0 ->
         <<"\r\n", str :: binary-size(n), "\r\n", r :: binary>> = rest
         {:ok, str, r}
 

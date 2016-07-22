@@ -81,6 +81,22 @@ defmodule APITest do
     assert 0 == client |> API.dbsize
   end
 
+  test "geoadd/geodist/georadius", ctx do
+    client = ctx[:client]
+
+    assert 2 == client |> API.geoadd("Sicily", [13.361389, 38.115556, "Palermo", 15.087269, 37.502669, "Catania"])
+    assert "166274.1516" == client |> API.geodist("Sicily", "Palermo", "Catania")
+    assert ["Catania"] == client |> API.georadius("Sicily", 15, 37, 100, "km")
+    assert ["Palermo", "Catania"] == client |> API.georadius("Sicily", 15, 37, 200, "km")
+  end
+
+  test "geohash", ctx do
+    client = ctx[:client]
+
+    assert 2 == client |> API.geoadd("Sicily", [13.361389, 38.115556, "Palermo", 15.087269, 37.502669, "Catania"])
+    assert ["sqc8b49rny0", "sqdtr74hyu0"] == client |> API.geohash("Sicily", ["Palermo", "Catania"])
+  end
+
   test "get/set", ctx do
     client = ctx[:client]
 
